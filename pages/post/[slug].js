@@ -12,8 +12,11 @@ const PostDetails = ({ post }) => {
     <div className="container w-4/5 mx-auto px-2 mb-8">
       <Head>
         <title>{post.title}</title>
-        <meta name="description" content="*EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language.* " />
-        <link rel="icon" href="/favicon.ICO" />
+        <meta
+          name="description"
+          content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
+        />
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -48,6 +51,7 @@ export async function getStaticProps({ params }) {
     props: { post: data },
   };
 }
+
 export async function getStaticPaths() {
   const posts = await getPosts();
   return {

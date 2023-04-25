@@ -3,51 +3,62 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment/moment";
 import Image from "next/image";
 import React from "react";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, type, obj) => {
+  const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
+
     if (obj) {
       if (obj.bold) {
         modifiedText = <b key={index}>{text}</b>;
       }
-      if (obj.italics) {
-        modifiedText = <p key={index}>{text}</p>;
+
+      if (obj.italic) {
+        modifiedText = <em key={index}>{text}</em>;
       }
+
       if (obj.underline) {
         modifiedText = <u key={index}>{text}</u>;
       }
     }
+
     switch (type) {
       case "heading-three":
         return (
           <h3 key={index} className="text-xl font-semibold mb-4">
-            {obj.text}
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
           </h3>
-        );
-      case "heading-four":
-        return (
-          <h4 key={index} className="text-md font-semibold mb-4">
-            {obj.text}
-          </h4>
         );
       case "paragraph":
         return (
           <p key={index} className="mb-8">
-            {obj.text}
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
           </p>
+        );
+      case "heading-four":
+        return (
+          <h4 key={index} className="text-md font-semibold mb-4">
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
+          </h4>
         );
       case "image":
         return (
           <img
-            src={obj.src}
-            alt={obj.title}
             key={index}
-            width={obj.width}
+            alt={obj.title}
             height={obj.height}
+            width={obj.width}
+            src={obj.src}
           />
         );
-
       default:
         return modifiedText;
     }
@@ -61,7 +72,7 @@ const PostDetail = ({ post }) => {
           className="object-top h-full w-full rounded-t-lg"
         />
       </div>
-      <div className="px-4 lg:p-0">
+      <div className="px-4 lg:p-0 ">
         <div className="flex text-center items-center justify-evenly mb-2 w-full">
           <div className="flex mr-auto ml-2 font-medium text-center text-xs text-gray-700">
             <span className="w-3 h-3 mr-2 text-blue-500 hover:text-blue-800">
@@ -87,13 +98,14 @@ const PostDetail = ({ post }) => {
             <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
           </div>
         </div>
-        <h1 className=" mb-8 text-2xl md:text-3xl font-semibold">
+        <h1 className=" mb-6 text-2xl mt-1 md:text-3xl font-semibold">
           {post.title}
         </h1>
         {post.content.raw.children.map((typeObj, index) => {
-          const children = typeObj.children.map((item, itemIndex) =>
-            getContentFragment(itemIndex, item.text, item)
+          const children = typeObj.children.map((item, itemindex) =>
+            getContentFragment(itemindex, item.text, item)
           );
+
           return getContentFragment(index, children, typeObj, typeObj.type);
         })}
       </div>

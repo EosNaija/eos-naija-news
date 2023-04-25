@@ -23,8 +23,11 @@ export default function Home({ posts, currentPage, numPages }) {
     <div className=" body-padding mx-auto mb-8">
       <Head>
         <title>Blog- EOS Naija</title>
-        <meta name="description" content="*EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language.* " />
-        <link rel="icon" href="/favicon.ICO" />
+        <meta
+          name="description"
+          content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
+        />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="import" href="/script/support.html" />
       </Head>
       <FeaturedBanner

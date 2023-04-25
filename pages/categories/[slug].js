@@ -15,8 +15,11 @@ export default function CategoryPost({ posts, currentPage, numPages }) {
     <div className="container body-padding mx-auto mb-8">
       <Head>
         <title>Blog- EOS Naija</title>
-        <meta name="description" content="*EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language.* " />
-        <link rel="icon" href="/favicon.ICO" />
+        <meta
+          name="description"
+          content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
+        />
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"

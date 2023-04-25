@@ -3,8 +3,8 @@ import { request, gql } from "graphql-request";
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
-    query MyQuery {
-      postsConnection {
+    query GetPosts {
+      postsConnection(orderBy: createdAt_DESC) {
         edges {
           node {
             author {
@@ -35,8 +35,7 @@ export const getRecentPosts = async () => {
   const query = gql`
   query GetPostDetails(){
     posts(
-      orderBy: createdAt_ASC
-      last:3
+      orderBy: createdAt_DESC, first: 3
     ){
       title
       featuredImage{
@@ -128,7 +127,7 @@ export const getCategoryPosts = async (slug) => {
   const query = gql`
     query getCategoryPosts($slug: String!) {
       category(where: { slug: $slug }) {
-        posts {
+        posts(orderBy: createdAt_DESC) {
           author {
             bio
             name

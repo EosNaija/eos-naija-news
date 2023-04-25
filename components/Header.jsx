@@ -50,12 +50,13 @@ const Header = () => {
       {showMenu && (
         <div className="md:hidden flex flex-col absolute top-full text-sm right-0 w-1/3 rounded-lg bg-gray-900 text-white py-3 px-4">
           {categories.map((category) => (
-            <Link
-              key={category.slug}
-              href={`/categories/${category.slug}`}
-              onClick={() => setShowMenu(!showMenu)}
-            >
-              <span className="headerLink p-1 text-left">{category.name}</span>
+            <Link key={category.slug} href={`/categories/${category.slug}`}>
+              <span
+                onClick={() => setShowMenu(!showMenu)}
+                className="headerLink p-1 text-left"
+              >
+                {category.name}
+              </span>
             </Link>
           ))}
         </div>
