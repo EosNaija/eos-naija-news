@@ -8,7 +8,7 @@ import {
   faDiscord,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
 
 // const items = useSelector(selectBasketItem);
 
@@ -24,15 +24,6 @@ function Footer() {
           </p>
         </div>
         <div className="flex text-lg items-center mt-4 text-white">
-          <Link href="/">
-            <a target="https://facebook.com/" className="mr-4">
-              <FontAwesomeIcon
-                className="text-lg md:text-xl w-5"
-                icon={faFacebookF}
-              />
-              <span className="sr-only">Facebook</span>
-            </a>
-          </Link>
           <Link href="https://discord.gg/FrCjqgWgjM">
             <a target="_blank" className="mr-4">
               <FontAwesomeIcon
@@ -51,10 +42,10 @@ function Footer() {
               <span className="sr-only">Twitter</span>
             </a>
           </Link>
-          <Link href="https://gmail.com/eosnaija.com">
+          <Link href="mailto:eosnaija@gmail.com">
             <a target="_blank">
               <FontAwesomeIcon
-                icon={faGoogle}
+                icon={faEnvelopeOpen}
                 className="text-lg md:text-xl w-5"
               />
               <span className="sr-only">Gmail</span>

@@ -3,8 +3,8 @@ import Link from "next/link";
 function Pagination({ currentPage, numPages }) {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === numPages;
-  const prevPage = `/blog/page/${currentPage - 1}`;
-  const nextPage = `/blog/page/${currentPage + 1}`;
+  const prevPage = `/page/${currentPage - 1}`;
+  const nextPage = `/page/${currentPage + 1}`;
 
   return (
     <div className="flex justify-between mt-6">

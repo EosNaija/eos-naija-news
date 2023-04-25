@@ -9,6 +9,4 @@ export { default as PostDetail } from "./PostDetail";
 export { default as FeaturedBanner } from "./FeaturedBanner";
 export { default as Pagination } from "./Pagination";
 export { default as SearchComponent } from "./Search";
-
 export { default as Loader } from "./Loader";
-export { default as FeaturedPostCard } from "./FeaturedPostCard";

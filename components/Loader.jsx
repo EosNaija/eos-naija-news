@@ -6,8 +6,8 @@ const Loader = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="text-4xl text-gray-500">
-        <FontAwesomeIcon icon={faSpinner} spin />
-        <h2 className="text-4xl text-gray-500">Loading Posts...</h2>
+        <FontAwesomeIcon icon={faSpinner} size="4x" spin />
+        <h2 className="text-3xl text-gray-500">Loading Posts...</h2>
       </div>
     </div>
   );
