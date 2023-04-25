@@ -62,7 +62,6 @@ export async function getStaticProps({ params }) {
       numPages: numPages,
     },
     revalidate: 60,
-    fallback: true,
   };
 }
 
