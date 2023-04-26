@@ -9,7 +9,7 @@ import {
 import { getPosts } from "../../services";
 import { useRouter } from "next/router";
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 9;
 
 export default function Home({ posts, currentPage, numPages }) {
   const router = useRouter();
