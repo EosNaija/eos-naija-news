@@ -7,7 +7,7 @@ import {
 } from "../components";
 import { getPosts } from "../services";
 
-const POSTS_PER_PAGE = 15;
+const POSTS_PER_PAGE = 9;
 
 export default function Home({ posts, currentPage, numPages }) {
   const {
