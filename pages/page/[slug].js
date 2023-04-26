@@ -9,7 +9,7 @@ import {
 import { getPosts } from "../../services";
 import { useRouter } from "next/router";
 
-const POSTS_PER_PAGE = 15;
+const POSTS_PER_PAGE = 6;
 
 export default function Home({ posts, currentPage, numPages }) {
   const router = useRouter();
@@ -65,8 +65,14 @@ export default function Home({ posts, currentPage, numPages }) {
 
 export async function getStaticPaths() {
   const posts = await getPosts();
+  const totalPages = Math.ceil(posts / POSTS_PER_PAGE);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const paths = pageNumbers.map((pageNumber) => ({
+    params: { slug: `${pageNumber}` },
+  }));
+
   return {
-    paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
+    paths,
     fallback: true,
   };
 }
