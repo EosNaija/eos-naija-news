@@ -20,7 +20,7 @@ const PostCard = ({ post }) => {
           <Link href={`/post/${post.slug}`}>{post.title}</Link>
         </h2>
         <div className="flex text-center items-center justify-evenly mb-2 w-full">
-          <div className="flex mr-auto ml-2 font-medium text-center text-xs text-gray-700">
+          <div className="flex ml-auto mr-auto md:ml-2 font-medium text-center text-xs text-gray-700">
             <span className="w-3 h-3 mr-2 text-blue-500 hover:text-blue-800">
               <FontAwesomeIcon className="w-4 h-4" icon={faUser} />
             </span>
