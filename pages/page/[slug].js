@@ -9,7 +9,7 @@ import {
 import { getPosts } from "../../services";
 import { useRouter } from "next/router";
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 15;
 
 export default function Home({ posts, currentPage, numPages }) {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function Home({ posts, currentPage, numPages }) {
     slug,
     title,
     read_duration,
-  } = posts[0].node;
+  } = posts[0]?.node;
   return (
     <div className=" body-padding mx-auto mb-8">
       <Head>
