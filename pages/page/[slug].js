@@ -16,7 +16,7 @@ export default function Home({ posts, currentPage, numPages }) {
   if (router.isFallback) {
     return <Loader />;
   }
-  console.log(posts);
+
   const {
     createdAt,
     author,
@@ -71,7 +71,6 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  console.log(params);
   const posts = (await getPosts()) || [];
   const page = parseInt((params && params.slug) || "1", 10);
   const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
