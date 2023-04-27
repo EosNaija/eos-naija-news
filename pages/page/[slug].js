@@ -25,7 +25,6 @@ export default function Home({ posts, currentPage, numPages }) {
           content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="import" href="/script/support.html" />
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 lg:col-span-9 col-span-1">

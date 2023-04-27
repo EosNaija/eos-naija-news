@@ -60,6 +60,19 @@ export const getRecentPosts = async () => {
 
 export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
+    fragment postFields on Post {
+      title
+      featuredImage {
+        url
+      }
+      createdAt
+      slug
+      categories {
+        name
+        slug
+      }
+    }
+
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
         where: {
@@ -68,16 +81,11 @@ export const getSimilarPosts = async (categories, slug) => {
         }
         last: 3
       ) {
-        title
-        featuredImage {
-          url
-        }
-        createdAt
-        slug
-        categories {
-          name
-          slug
-        }
+        ...postFields
+      }
+      post(where: { slug: $slug }) {
+        ...postFields
+        content
       }
     }
   `;
@@ -113,6 +121,7 @@ export const getPostDetails = async (slug) => {
         createdAt
         slug
         title
+        content
         excerpt
         featuredImage {
           url
@@ -121,7 +130,6 @@ export const getPostDetails = async (slug) => {
           name
           slug
         }
-        content
       }
     }
   `;

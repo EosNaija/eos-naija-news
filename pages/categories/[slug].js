@@ -20,13 +20,6 @@ export default function CategoryPost({ posts, currentPage, numPages }) {
           content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-          integrity="sha512-BNfIB9vyH+Fy+ZWJ46FLAx/eQwTq3kIzDZP6sJocI8Rup9XfBgV7ywx92JDT1T+Txd3BqP2/F2ZMKY+u6rLd9g=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
       </Head>
       <div className="h-0.5 my-2 bg-gray-500 w-full">
         <br />

@@ -28,7 +28,6 @@ export default function Home({ posts, currentPage, numPages }) {
           content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="import" href="/script/support.html" />
       </Head>
       <FeaturedBanner
         author={author.name}
