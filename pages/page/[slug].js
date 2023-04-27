@@ -9,23 +9,13 @@ import {
 import { getPosts } from "../../services";
 import { useRouter } from "next/router";
 
-const POSTS_PER_PAGE = 9;
+const POSTS_PER_PAGE = 6;
 
 export default function Home({ posts, currentPage, numPages }) {
   const router = useRouter();
   if (router.isFallback) {
     return <Loader />;
   }
-
-  const {
-    createdAt,
-    author,
-    featuredImage,
-    excerpt,
-    slug,
-    title,
-    read_duration,
-  } = posts[0]?.node;
   return (
     <div className=" body-padding mx-auto mb-8">
       <Head>
@@ -37,15 +27,6 @@ export default function Home({ posts, currentPage, numPages }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="import" href="/script/support.html" />
       </Head>
-      <FeaturedBanner
-        author={author.name}
-        createdAt={createdAt}
-        slug={slug}
-        image={featuredImage.url}
-        title={title}
-        excerpt={excerpt}
-        read_duration={read_duration}
-      />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 lg:col-span-9 col-span-1">
           {posts?.map((post) => (

@@ -44,14 +44,14 @@ const SearchComponent = () => {
   };
   const showResult = searchTerm !== "" && searchResults.length > 1;
   return (
-    <div className="p-3 w-1/3 hidden lg:flex rounded-3xl bg-gray-200 text-sm">
+    <div className="p-3 w-1/3 hidden lg:flex rounded-3xl bg-gray-50 text-sm">
       <span className="small-icon">
         <FontAwesomeIcon className="w-5 h-5" icon={faSearch} />
       </span>
       <input
-        className="outline-none w-full bg-gray-200 placeholder:text-xs placeholder:text-gray-700 placeholder:font-semibold"
+        className="outline-none w-full bg-gray-50 placeholder:text-xs placeholder:text-gray-700 placeholder:font-semibold"
         type="text"
-        placeholder="Search posts"
+        placeholder="Search...."
         value={searchTerm}
         onChange={handleInputChange}
       />

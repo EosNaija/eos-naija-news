@@ -16,12 +16,12 @@ const PostCard = ({ post }) => {
             alt={post.title}
           />
         </div>
-        <h2 className="transition ml-2 duration-700 text-center md:text-left mb-2 cursor-pointer hover:text-blue-800 text-md md:text-lg font-semibold">
+        <h2 className="transition ml-2 duration-700 text-center md:text-left mb-2 cursor-pointer hover:text-green-600 text-md md:text-lg font-semibold">
           <Link href={`/post/${post.slug}`}>{post.title}</Link>
         </h2>
         <div className="flex text-center items-center justify-evenly mb-2 w-full">
           <div className="flex ml-auto mr-auto md:ml-2 font-medium text-center text-xs text-gray-700">
-            <span className="w-3 h-3 mr-2 text-blue-500 hover:text-blue-800">
+            <span className="w-3 h-3 mr-2 text-green-500 hover:text-green-600">
               <FontAwesomeIcon className="w-4 h-4" icon={faUser} />
             </span>
             <span>By {post.author.name}</span>
@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
           <div className="font-medium mr-auto ml-2 text-xs text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 inline mr-2 text-blue-500 hover:text-blue-800"
+              className="h-4 w-4 inline mr-2 text-green-500 hover:text-green-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -47,7 +47,7 @@ const PostCard = ({ post }) => {
         <p className="text-center md:text-left text-xs text-gray-900 font-normal px-2 lg:px-2 mb-4">
           {post.excerpt}
         </p>
-        <div className="flex w-fit ml-auto md:ml-2 mr-auto transition duration-500 text-white p-1 bg-blue-500 hover:bg-blue-800 rounded-full font-medium text-xs px-2 py-2 cursor-pointer text-center mb-2">
+        <div className="flex w-fit ml-auto md:ml-2 mr-auto transition duration-500 text-white p-1 bg-green-500 hover:bg-green-600 rounded-full font-medium text-xs px-2 py-2 cursor-pointer text-center mb-2">
           <FontAwesomeIcon className=" w-3 h-3 mr-1" icon={faClock} />
           <Link href={`/post/${post.slug}`}>
             <span>{post.read_duration} min read</span>

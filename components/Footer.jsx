@@ -6,19 +6,18 @@ import {
   faFacebookF,
   faTwitter,
   faDiscord,
-  faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
-import { faClock, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
 
 // const items = useSelector(selectBasketItem);
 
 function Footer() {
   const session = false;
   return (
-    <footer className="bg-black body-padding text-white py-6 items-center">
+    <footer className="bg-green-600 body-padding text-white py-6 items-center">
       <div className="container mx-auto flex flex-col md:flex-col items-center justify-between">
         <div className="text-center flex-col justify-center my-4 items-center flex md:text-left ">
-          <p className="mb-3 text-md md:text-lg font-bold">EOS Nigeria</p>
+          <p className="mb-3 text-md md:text-lg font-bold">EOS NIGERIA</p>
           <p className="text-xs md:text-sm">
             EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language
           </p>

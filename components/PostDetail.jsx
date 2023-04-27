@@ -1,66 +1,12 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment/moment";
-import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import React from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, obj, type) => {
-    let modifiedText = text;
-
-    if (obj) {
-      if (obj.bold) {
-        modifiedText = <b key={index}>{text}</b>;
-      }
-
-      if (obj.italic) {
-        modifiedText = <em key={index}>{text}</em>;
-      }
-
-      if (obj.underline) {
-        modifiedText = <u key={index}>{text}</u>;
-      }
-    }
-
-    switch (type) {
-      case "heading-three":
-        return (
-          <h3 key={index} className="text-xl font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </h3>
-        );
-      case "paragraph":
-        return (
-          <p key={index} className="mb-8">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </p>
-        );
-      case "heading-four":
-        return (
-          <h4 key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </h4>
-        );
-      case "image":
-        return (
-          <img
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          />
-        );
-      default:
-        return modifiedText;
-    }
-  };
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md mb-6">
@@ -72,16 +18,16 @@ const PostDetail = ({ post }) => {
       </div>
       <div className="px-4 lg:p-0 ">
         <div className="flex text-center items-center justify-evenly mb-2 w-full">
-          <div className="flex mr-auto ml-2 font-medium text-center text-xs text-gray-700">
-            <span className="w-3 h-3 mr-2 text-blue-500 hover:text-blue-800">
+          <div className="flex mr-auto ml-2 font-medium text-center text-sm text-gray-700">
+            <span className="w-3 h-3 mr-2  text-green-600 hover:text-green-700">
               <FontAwesomeIcon className="w-4 h-4" icon={faUser} />
             </span>
             <span>By {post.author.name}</span>
           </div>
-          <div className="font-medium mr-auto ml-2 text-xs text-gray-700">
+          <div className="font-medium mr-auto ml-2 text-sm text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 inline mr-2 text-blue-500 hover:text-blue-800"
+              className="h-4 w-4 inline text-green-600 mr-2 hover:text-green-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -99,13 +45,31 @@ const PostDetail = ({ post }) => {
         <h1 className=" mb-6 text-2xl mt-1 md:text-3xl font-semibold">
           {post.title}
         </h1>
-        {post.content.raw.children.map((typeObj, index) => {
-          const children = typeObj.children.map((item, itemindex) =>
-            getContentFragment(itemindex, item.text, item)
-          );
-
-          return getContentFragment(index, children, typeObj, typeObj.type);
-        })}
+        <div className="markdown max-w-screen-md mx-auto">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, { singleTilde: false }]}
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || "");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    language={match[1]}
+                    PreTag="div"
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </div>
       </div>
     </div>
   );

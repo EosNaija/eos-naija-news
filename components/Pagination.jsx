@@ -3,14 +3,14 @@ import Link from "next/link";
 function Pagination({ currentPage, numPages }) {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === numPages;
-  const prevPage = `/page/${currentPage - 1}`;
+  const prevPage = currentPage == 2 ? "/" : `/page/${currentPage - 1}`;
   const nextPage = `/page/${currentPage + 1}`;
 
   return (
     <div className="flex justify-between mt-6">
       {!isFirstPage && (
         <Link href={prevPage}>
-          <a className="text-blue-500 hover:text-blue-700 font-bold">
+          <a className="text-green-600 hover:text-green-700 font-bold">
             ← Previous
           </a>
         </Link>
@@ -20,7 +20,9 @@ function Pagination({ currentPage, numPages }) {
       </div>
       {!isLastPage && (
         <Link href={nextPage}>
-          <a className="text-blue-500 hover:text-blue-700 font-bold">Next →</a>
+          <a className="text-green-600 hover:text-green-600 font-bold">
+            Next →
+          </a>
         </Link>
       )}
     </div>

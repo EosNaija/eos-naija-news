@@ -7,7 +7,7 @@ import {
 } from "../components";
 import { getPosts } from "../services";
 
-const POSTS_PER_PAGE = 9;
+const POSTS_PER_PAGE = 6;
 
 export default function Home({ posts, currentPage, numPages }) {
   const {
@@ -42,7 +42,7 @@ export default function Home({ posts, currentPage, numPages }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 lg:col-span-9 col-span-1">
-          {posts?.map((post) => (
+          {posts?.slice(1).map((post) => (
             <PostCard key={post.title} post={post.node} />
           ))}
         </div>

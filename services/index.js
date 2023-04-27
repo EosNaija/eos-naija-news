@@ -121,9 +121,7 @@ export const getPostDetails = async (slug) => {
           name
           slug
         }
-        content {
-          raw
-        }
+        content
       }
     }
   `;
