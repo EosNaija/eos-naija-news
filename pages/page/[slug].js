@@ -33,7 +33,7 @@ export default function Home({ posts, currentPage, numPages }) {
           ))}
         </div>
         <div className="lg:col-span-3 col-span-1">
-          <div className="lg:sticky relative top-24">
+          <div className="lg:sticky relative top-12">
             <PostWidget />
           </div>
         </div>
