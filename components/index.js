@@ -10,3 +10,4 @@ export { default as FeaturedBanner } from "./FeaturedBanner";
 export { default as Pagination } from "./Pagination";
 export { default as SearchComponent } from "./Search";
 export { default as Loader } from "./Loader";
+export { default as FeaturedText } from "./FeaturedText";
