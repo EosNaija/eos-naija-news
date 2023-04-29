@@ -3,8 +3,8 @@ import { request, gql } from "graphql-request";
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
-    query MyQuery {
-      postsConnection(orderBy: createdAt_DESC) {
+    query GetAllPosts() {
+      postsConnection(orderBy: createdAt_DESC, first: 9000) {
         edges {
           cursor
           node {
@@ -35,6 +35,43 @@ export const getPosts = async () => {
   `;
 
   const result = await request(graphqlAPI, query);
+
+  return result.postsConnection.edges;
+};
+export const getPagePosts = async (skip) => {
+  const query = gql`
+    query GetPagePosts($skip: Int!) {
+      postsConnection(orderBy: createdAt_DESC, skip: $skip, first: 10) {
+        edges {
+          cursor
+          node {
+            author {
+              bio
+              name
+              id
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            title
+            excerpt
+            read_duration
+            featuredImage {
+              url
+            }
+            categories {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { skip });
 
   return result.postsConnection.edges;
 };
