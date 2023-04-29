@@ -1,17 +1,27 @@
 import Head from "next/head";
-import { PostCard, PostWidget, Pagination, Loader } from "../../components";
-import { getPagePosts, getPosts } from "../../services";
-import { useRouter } from "next/router";
+import {
+  PostCard,
+  PostWidget,
+  FeaturedBanner,
+  Pagination,
+  FeaturedText,
+} from "../components";
+import { getPosts } from "../services";
 
 const POSTS_PER_PAGE = 10;
 
 export default function Home({ posts, currentPage, numPages }) {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <Loader />;
-  }
+  const {
+    createdAt,
+    author,
+    featuredImage,
+    excerpt,
+    slug,
+    title,
+    read_duration,
+  } = posts[0]?.node;
   return (
-    <div className=" body-padding mx-auto mb-8">
+    <div className="">
       <Head>
         <title>Blog- EOS Naija</title>
         <meta
@@ -20,44 +30,50 @@ export default function Home({ posts, currentPage, numPages }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 lg:col-span-9 col-span-1">
-          {posts?.map((post) => (
-            <PostCard key={post.title} post={post.node} />
-          ))}
-        </div>
-        <div className="lg:col-span-3 col-span-1">
-          <div className="lg:sticky relative top-12">
-            <PostWidget />
+      <div className="bg-green-600 h-96 -mb-48">
+        <FeaturedText />
+      </div>
+      <div className=" body-padding mx-auto mb-8">
+        <FeaturedBanner
+          author={author.name}
+          createdAt={createdAt}
+          slug={slug}
+          image={featuredImage.url}
+          title={title}
+          excerpt={excerpt}
+          read_duration={read_duration}
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 lg:col-span-9 col-span-1">
+            {posts?.slice(1).map((post) => (
+              <PostCard key={post.title} post={post.node} />
+            ))}
+          </div>
+          <div className="lg:col-span-3 col-span-1">
+            <div className="lg:sticky relative top-10">
+              <PostWidget />
+            </div>
           </div>
         </div>
+        <div className="relative top-22">
+          <Pagination currentPage={currentPage} numPages={numPages} />
+        </div>
       </div>
-      <Pagination currentPage={currentPage} numPages={numPages} />
     </div>
   );
 }
 
-export async function getStaticPaths() {
-  const posts = await getPosts();
-  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-  const paths = pageNumbers.map((pageNumber) => ({
-    params: { slug: `${pageNumber}` },
-  }));
-  return {
-    paths,
-    fallback: true,
-  };
-}
 export async function getStaticProps({ params }) {
-  const page = parseInt((params && params.slug) || "1", 10);
-  const skip = (page - 1) * POSTS_PER_PAGE;
-  const posts = (await getPagePosts(skip)) || [];
-  const numPages = posts.length < 10 ? page : page + 1;
-
+  const page = parseInt((params && params.page) || "1", 10);
+  const posts = (await getPosts()) || [];
+  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  const startIndex = (page - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const slicedPosts = posts.slice(startIndex, endIndex);
   return {
     props: {
-      posts,
+      posts: slicedPosts,
       currentPage: page,
       numPages: numPages,
     },
