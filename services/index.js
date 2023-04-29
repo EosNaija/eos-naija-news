@@ -178,7 +178,7 @@ export const getCategoryPosts = async (slug) => {
   const query = gql`
     query getCategoryPosts($slug: String!) {
       category(where: { slug: $slug }) {
-        posts(orderBy: createdAt_DESC) {
+        posts(orderBy: createdAt_DESC, first: 9000) {
           author {
             bio
             name
