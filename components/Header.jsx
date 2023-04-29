@@ -48,7 +48,7 @@ const Header = () => {
 
       {/* Menu Dropdown (visible on small screens) */}
       {showMenu && (
-        <div className="md:hidden flex flex-col absolute top-full text-sm right-0 w-1/3 rounded-lg bg-gray-900 text-white py-3 px-4">
+        <div className="md:hidden flex flex-col absolute top-full text-sm right-0 w-1/3 rounded-lg bg-gray-900 text-white py-3 px-6">
           {categories.map((category) => (
             <Link key={category.slug} href={`/categories/${category.slug}`}>
               <span
