@@ -30,6 +30,7 @@ export default function Home({ posts, currentPage, numPages }) {
             content="EOS Nigeria provides first-hand EOS news in Nigerian Pidgin Language"
           />
           <link rel="icon" href="/favicon.ico" />
+          <script async={false} src="/intercom.js" />
         </Head>
         <div className="bg-green-600 h-96 -mb-48">
           <FeaturedText />
